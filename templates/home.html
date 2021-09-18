@@ -1,0 +1,10 @@
+    <h2>home</h2>
+{% for movielog in movielogs.all %}
+    <h1>{{ movielog.title }}</h1>
+    <p>{{ movielog.director }}</p>
+    <p>{{ movielog.release_day }}</p>
+    <p>{{ movielog.summary }} </p>
+    <p>{{ movielog.pub_date }}</p>
+    <a href ="{% url 'detail' movielog.id %}">detail페이지로</a>
+{% endfor %}
+
