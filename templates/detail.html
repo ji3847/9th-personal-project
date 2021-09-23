@@ -4,3 +4,29 @@
 <p>{{ movielog.release_day }}</p>
 <p>{{ movielog.body }} </p>
 <p>{{ movielog.pub_date }}</p>
+<p style="color: purple">
+    {% for hashtag in hashtags.all %}
+    #{{hashtag}}
+    {% endfor %}    
+</p>
+<br>
+<br>
+<a href="{% url 'home' %}">홈으로 돌아가기</a>
+<a href="{% url 'edit' movielog.id %}">수정하기</a>
+<a href="{% url 'delete' movielog.id %}">삭제하기</a>
+<br>
+<br>
+<a class = "btn btn-default" href ="{% url 'add_comment_to_post' movielog.id %}">댓글달기</a>
+<br>
+<br>
+{% for comment in movielog.comments.all %}
+    <div class="comment">
+        <strong>{{ comment.author_name }}</strong>
+        <p> {{comment.comment_text|linebreaks}}</p>
+        <div class="date">{{comment.created_at}}</div>
+        
+    </div>
+    <br>
+{% empty %}
+    <p>작성된 댓글이 없습니다 :(</p>
+{% endfor %}

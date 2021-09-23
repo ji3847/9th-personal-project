@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'movielog.apps.MovielogConfig',
+    'account.apps.AccountConfig',
     
 ]
 
@@ -122,7 +123,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS =[
+    os.path.join(BASE_DIR, 'movielog', 'static')
+]
+
+STATIC_ROOT=os.path.join(BASE_DIR, 'static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
+
+MEDIA_ROOT=os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL ='/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -16,9 +16,23 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import movielog.views
+from django.conf import settings
+from django.conf.urls.static import static
+import account.views as account
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', movielog.views.home, name="home"),
     path("movielog/<int:movielog_id>", movielog.views.detail, name="detail"),
-]
+    path('new/', movielog.views.new, name="new"),
+    path('create/', movielog.views.create, name="create"),
+    path('edit/<int:movielog_id>', movielog.views.edit, name="edit"),
+    path('update/<int:movielog_id>', movielog.views.update, name="update"),
+    path('delete/<int:movielog_id>', movielog.views.delete, name="delete"),
+    path('<int:movielog_id>/comment', movielog.views.add_comment_to_post, name="add_comment_to_post"),
+    path('account/login', account.login_view, name="login"),
+    path('account/logout', account.logout_view, name="logout"),
+    path('account/register', account.register_view, name="register"),
+
+    
+] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

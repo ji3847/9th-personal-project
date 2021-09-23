@@ -1,0 +1,11 @@
+<h1>Edit</h1>
+
+<form action="{% url 'update' movielog.id %}" method="post">
+    {% csrf_token %}
+    <p>제목: <input type="text" name="title" value="{{ movielog.title }}"></p> 
+    <p>감독: <input type="text" name="director" value="{{ movielog.director }}"></p>
+    <p>개봉일: <input type="text" name="release_day" value="{{ movielog.release_day }}"></p>
+    <p>한줄평:<br>
+    <textarea name="body" id="" cols="25" rows="10">{{ movielog.body }}</textarea></p>
+    <button type="submit">제출</button>
+</form>
