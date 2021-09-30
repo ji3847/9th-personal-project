@@ -9,6 +9,9 @@ from django.conf import settings
 
 # Create your views here.
 
+def main(request):
+    
+    return render(request, 'main.html')
 
 def home(request):
     movielog = Movielog.objects

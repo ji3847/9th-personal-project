@@ -17,7 +17,7 @@ class Movielog(models.Model):
     body=models.TextField()
     pub_date=models.DateTimeField('date published')
     hashtag = models.ManyToManyField(HashTag)
-    #image=models.ImageField(upload_to='media/')
+    #image=models.ImageField(upload_to='images/',blank=True, null=True)
 
     def __str__(self):
         return self.title
@@ -36,5 +36,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment_text
+
+
 
 

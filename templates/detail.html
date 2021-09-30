@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+{% block content %}
+         
+
 <h2>detail</h2>
 <h1>{{ movielog.title }}</h1>
 <p>{{ movielog.director }}</p>
@@ -30,3 +34,5 @@
 {% empty %}
     <p>작성된 댓글이 없습니다 :(</p>
 {% endfor %}
+
+{% endblock %}

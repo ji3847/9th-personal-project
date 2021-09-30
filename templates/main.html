@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+        <div id="main1">
+            <div id="main1-1">
+                <div class="des-box">
+                    <p class="korean">당신의 문화 생활을 기록해 보세요<br>FROM 1999</p>
+                    <p class="Movielog">Movielog</p>
+                </div>
+                <div class="home-buttons">
+                    <a href="{% url 'home'%}"><button class="go-home">홈으로 이동하기</button></a>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'new'%}"><button class="go-new">감상평 작성하기</button></a>
+                    {% endif %}
+                </div>
+            </div>
+            <div id="main1-2">
+                <img src="https://cdn.pixabay.com/photo/2016/03/31/18/36/cinema-1294496_1280.png" alt="image" width="600px" height="700px">
+            </div>
+            
+        </div>
+
+         
+{% endblock %}

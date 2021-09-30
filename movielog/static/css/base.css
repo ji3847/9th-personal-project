@@ -1,0 +1,90 @@
+main{
+    
+    }
+
+    #main1{
+        display: flex;
+    }
+
+    #main1-1{
+        width: 720px;
+    }
+
+    .des-box{
+        padding-top: 75px;
+    }
+
+    img{
+        padding-top: 170px;
+        padding-left: 100px;
+
+    }
+
+    #main1 .des-box{
+    margin: 14px 50px 50px 90px;
+    padding-top: 90px;
+    padding-left: 50px;
+    }
+    .korean{
+        font-size: 35px;
+        line-height: 60px;
+        color: rgb(74, 78, 78)
+ 
+    }
+    .Movielog{
+        font-size: 65px;
+        padding-top: 40px;
+        color: rgb(0, 3, 3);
+        padding-top: 10%;
+    }
+
+    div .home-buttons{
+        display: flex;
+        flex-direction: column;
+        font-size: 25px;
+        padding-left: 17px;
+        padding-top: 20px;
+    }
+
+    .go-home{
+        width: 280px;
+        height: 76px;
+        border-radius: 20px;
+        margin-left: 70px;
+        background-color: rgb(79, 87, 85);
+        color: white;
+        border-color: none;
+    }
+
+    .go-new{
+        width: 280px;
+        height: 76px;
+        border-radius: 20px;
+        margin-left: 70px;
+        margin-top: 30px;
+        background-color: rgb(79, 87, 85);
+        color: white;
+        border-color: none;
+
+
+
+    }
+
+
+
+
+
+
+    @font-face {
+    font-family: 'GongGothicMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    }
+
+    *{
+        font-family: 'GongGothicMedium';
+    }
+
+   
+  
