@@ -21,9 +21,11 @@ def detail(request, movielog_id):
     movielog_detail = get_object_or_404(Movielog, pk=movielog_id)
     return render(request, 'detail.html', {'movielog':movielog_detail})
 
+
 def new(request):
     form = MovielogForm()
     return render(request, 'new.html', {'form': form})
+
 
 def create(request):
     form = MovielogForm(request.POST, request.FILES)
@@ -54,13 +56,16 @@ def update(request, movielog_id):
     movielog_update.director = request.POST['director']
     movielog_update.release_day = request.POST['release_day']
     movielog_update.body = request.POST['body']
+    movielog_update.image = request.POST['image']
     movielog_update.save()
     return redirect('home')
+
 
 def delete(request, movielog_id):
     movielog_delete = get_object_or_404(Movielog, pk=movielog_id)
     movielog_delete.delete()
     return redirect('home')
+
 
 def add_comment_to_post(request, movielog_id):
     movielog = get_object_or_404(Movielog, pk=movielog_id)
@@ -82,3 +87,4 @@ def detail(request, movielog_id):
     movielog_detail = get_object_or_404(Movielog, pk=movielog_id)
     movielog_hashtag = movielog_detail.hashtag.all()
     return render(request, 'detail.html', {'movielog':movielog_detail,'hashtags':movielog_hashtag})
+

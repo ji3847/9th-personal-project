@@ -22,8 +22,8 @@ import account.views as account
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', movielog.views.main, name="main"),
-    path('home/', movielog.views.home, name="home"),
+    #path('', movielog.views.main, name="main"),
+    path('', movielog.views.home, name="home"),
     path("movielog/<int:movielog_id>", movielog.views.detail, name="detail"),
     path('new/', movielog.views.new, name="new"),
     path('create/', movielog.views.create, name="create"),

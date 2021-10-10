@@ -1,47 +1,54 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>새 글 작성</h1>
+         
+        <h1 style="margin-top:50px; margin-bottom: 0px; font-family: 'GongGothicMedium';">새 글 작성</h1>
 
-<form action="{% url 'create' %}" method="post">
-    {% csrf_token %}
-    
-    {% if form.errors %}
-            <div class="alert alert-danger" role="alert">
-            {% for field in form %}
-                {% if field.errors %}
-                <strong>{{ field.label }}</strong>
-                {{ field.errors }}
-                {% endif %}
-            {% endfor %}
-            </div>
-    {% endif %}
-    <div class = "login-form">
-        <div class="form-group">
-            <label for="title">제목</label>
-            <input type="text" class="form-control" name="title" id="title"
-               value="{{ form.title.value|default_if_none:'' }}">
-        </div>
-        <div class="form-group">
-            <label for="director">감독</label>
-            <input type="text" class="form-control" name="director" id="director"
-               value="{{ form.director.value|default_if_none:'' }}">
-        </div>
-        <div class="form-group">
-            <label for="release_day">개봉일/출간일</label>
-            <input type="text" class="form-control" name="release_day" id="release_day"
-               value="{{ form.release_day.value|default_if_none:'' }}">
-        </div>
-        <div class="form-group">
-            <label for="body">한줄평</label>
-            <input type="text" class="form-control" name="body" id="body"
-               value="{{ form.body.value|default_if_none:'' }}">
-        </div>
-    
+        <form action="{% url 'create' %}" method="post" enctype="mulitpart/fomr-data" style="margin: 40px 70px 70px 70px; padding-left:100px;" >
+            {% csrf_token %}
+            
+           {% if form.errors %}
+                    <div class="alert alert-danger" role="alert">
+                    {% for field in form %}
+                        {% if field.errors %}
+                        <strong>{{ field.label }}</strong>
+                        {{ field.errors }}
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+            {% endif %}
+            <div class = "login-form" style="margin: 50px;">
+                <div class="form-group" style="margin:10px;">
+                    <label for="title" style="margin:5px; text-align:left; width: 100%;">제목</label>
+                    <input type="text" class="form-control" name="title" id="title"
+                       value="{{ form.title.value|default_if_none:'' }}">
+                </div>
+                <div class="form-group" style="margin:10px;">
+                    <label for="director" style="margin:5px; text-align:left; width: 100%;">감독/작가</label>
+                    <input type="text" class="form-control" name="director" id="director"
+                       value="{{ form.director.value|default_if_none:'' }}" >
+                </div>
+                <div class="form-group" style="margin:10px;">
+                    <label for="release_day" style="margin:5px; text-align:left; width: 100%;">개봉일/출간일</label>
+                    <input type="text" class="form-control" name="release_day" id="release_day"
+                       value="{{ form.release_day.value|default_if_none:'' }}">
+                </div>
+                <div class="form-group" style="margin:10px;">
+                    <label for="body" style="margin:5px; text-align:left; width: 100%;">한줄평</label>
+                    <input type="text" class="form-control" name="body" id="body"
+                       value="{{ form.body.value|default_if_none:'' }}" style="height: 200px;">
+                </div>
+                <div class="form-group" style="margin:10px;">
+                    <label for="image" style="margin:5px; text-align:left; width: 100%;">포스터</label>
+                    <input type="file" class="form-control" name="image" id="image"
+                       value="{{ form.image.value|default_if_none:'' }}">
+                </div>
+            
+                <br>
+                장르: <input type="text" name="hashtags" placeholder="해시태그 ,로 구분">
+            </div> 
+            
+            
+            <button type="submit">저장</button>
+        </form> 
 
-        장르: <input type="text" name="hashtags" placeholder="해시태그 ,로 구분">
-    </div>
-    <br>
-    <br>
-    <button type="submit">저장</button>
-</form>
-{% endblock %}
+        {% endblock %}

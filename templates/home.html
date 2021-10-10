@@ -1,22 +1,122 @@
 
-{% extends 'base.html' %}
-{% block content %}
-         
-    <h2>home</h2>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movielog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css" >
+    <style>
+        body{
+    height: 1000px;
+    background: #ffffff; 
     
- 
+    }
+    .cards-box {
+            display: flex;
+            justify-content: space-between;
+            margin: 0 70px;
+            margin-top: 55px;
+            flex-wrap: wrap;
+            {#float: left;#}
+        }
+    .card-title{
+        font-size: 25px;
+        margin-bottom: 5px;
 
-{% for movielog in movielogs.all %}
-     
-    <h1>{{ movielog.title }}</h1>
-    <p>{{ movielog.director }}</p>
-    <p>{{ movielog.release_day }}</p>
-    <p>{{ movielog.summary }} </p>
-    <p>{{ movielog.pub_date }}</p>
+    }
+    .card-director {
+        margin-bottom: 10px;
+        font-size:small;
+    } 
     
-    
-    
-    
-    <a href ="{% url 'detail' movielog.id %}">detail페이지로</a>   
-{% endfor %}
-{% endblock %}
+   h2 {
+    font-family: 'GongGothicMedium';
+    margin-top: 50px;
+    margin-left: 80px;
+    text-align: left;
+   }
+   .card-img-top{  
+       object-fit: contain;
+       padding: 0px;
+}
+
+
+   
+    </style>
+</head>
+<body style="text-align: center;">
+    <header>
+        <nav class="navbar navbar-dark navbar-expand-sm" style="background-color: black;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'home' %}">Movielog</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div style="color: rgb(138, 120, 120);">
+                    {% if user.is_authenticated %}
+                    {{user.username}}님 환영합니다!
+                    {% endif %}
+                     <br>
+                </div>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        {% if not user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link px-3 active" aria-current="page" href="{% url 'login' %}">LOG IN</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 " href="{% url 'register' %}">SIGN UP</a>
+                        </li>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link px-3 " href="{% url 'new' %}">새 글 쓰기</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3" href="{% url 'logout' %}">LOG OUT</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+<h2>글 목록</h2>
+
+
+<div class="card-colums" id="all_posting">
+    <div id="card-box" class="cards-box">
+        {% for movielog in movielogs.all %}
+            <div class="card" style="width: 18rem; margin-bottom:15px; margin-left: 10px;">
+                {% if movielog.image.url != None %}
+                     <img class="card-img-top" src="{{ movielog.image.url}}" alt="Card image cap"
+                     style="border-bottom: 1px solid #eee; height: 250px;">
+                     {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ movielog.title }}</h5>
+                    <p class="card-director text-muted">{{ movielog.director }} | {{ movielog.release_day }} </p>
+                    <p class="card-text" style="margin-bottom: 5px;">"{{ movielog.summary }}"</p>
+                    
+                     
+                <div class="card-body" style="padding:5px;">
+                            <a href="{% url 'detail' movielog.id %}" class="card-link">자세히 보기</a>
+                 
+                       
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+   
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+
+</html>
